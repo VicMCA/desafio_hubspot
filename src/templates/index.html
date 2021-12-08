@@ -25,12 +25,21 @@
         <p>Todos os campos são obrigatórios</p>
           
         <form class="formulario" action="/send_form" method="POST">
-          <input type="text" id="nome" name="nome" required placeholder="Primeiro Nome">
-          <input type="text" id="sobrenome" name="sobrenome" required placeholder="Sobrenome">
-          <input type="email" id="email" name="email" required placeholder="seu.email@aqui.com">
-          <input type="tel" id="fone" name="fone" required placeholder="(00) 0 0000-0000">
-          <input type="date" id="data_nasc" name="data_nasc" required>
-          <input type="number" id="peso" name="peso" required>
+          <div>
+            <input type="text" id="nome" name="nome" required placeholder="Primeiro Nome">
+            <input type="text" id="sobrenome" name="sobrenome" required placeholder="Sobrenome">
+          </div>
+          <br/>
+          <div>
+            <input type="email" id="email" name="email" required placeholder="seu.email@aqui.com">
+            <input type="tel" id="fone" name="fone" required placeholder="(00) 0 0000-0000">
+          </div>
+          <br/>
+          <div>
+            <input type="date" id="data_nasc" name="data_nasc" required>
+            <input type="number" id="peso" name="peso" required>
+          </div>
+          <br/>
           <div class="buttons">
             <button class="form_buttons" type="submit">Enviar</button>
             <button class="form_buttons" type="reset">Limpar</button>

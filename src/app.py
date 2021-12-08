@@ -2,8 +2,10 @@ from enum import unique
 from flask import Flask, render_template, request, url_for, redirect, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from utils import check, hs_templates, validate_hs_property
-import os, numbers, json
+import os, numbers, json, re
+import hubspot
+from pprint import pprint
+from hubspot.crm.contacts import SimplePublicObjectInput, ApiException
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -11,7 +13,35 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-class Contatos(db.model):
+
+client = hubspot.Client.create(api_key=os.getenv('API_KEY'))
+
+
+properties = {
+    "company": "Biglytics",
+    "email": "bcooper@biglytics.net",
+    "firstname": "Bryan",
+    "lastname": "Cooper",
+    "phone": "(877) 929-0687",
+    "website": "biglytics.net"
+}
+
+
+simple_public_object_input = SimplePublicObjectInput(properties=properties)
+
+
+try:
+    api_response = client.crm.contacts.basic_api.create(simple_public_object_input=simple_public_object_input)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling basic_api->create: %s\n" % e)
+
+
+def check(obj):
+  regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+  return re.search(regex, obj)
+
+class Contatos(db.Model):
   id = db.Column(db.Integer)
   nome = db.Column(db.String(200), nullable=False)
   sobrenome = db.Column(db.String(200), nullable=False)
@@ -36,27 +66,25 @@ class HubSpot:
       r = request.get(url=url, params=self.params)
       return r
     else:
-      raise Exception("Please provide a valid email address")
+      raise Exception("Por favor, disponibilize um endereço de e-mail.")
 
 
   def create_contact(self, arr):
-    if validate_hs_property(action="create", data=arr):
-      data = hs_templates(arr)
-      url = f'{self.endpoint}/'
-      r = request.post(url=url, headers=self.headers, params=self.params, data=json.dumps(data))
-      return r
-    else:
-      raise Exception("Email required")
+    data = hs_templates(arr)
+    url = f'{self.endpoint}/'
+    r = request.post(url=url, headers=self.headers, params=self.params, data=json.dumps(data))
+    return r
+
 
 
   def update_property(self, email, arr):
-    if check(email) and validate_hs_property(action="update", data=arr):
+    if check(email):
       data = hs_templates(arr)
       url = f'{self.endpoint}/email/{email}/profile'
       r = request.post(url, headers=self.headers, params=self.params, data=json.dumps(data))
       return r
     else:
-      raise Exception("Invalid Email")
+      raise Exception("E-mail inválido.")
 
     
   def del_contact(self, id):
@@ -65,7 +93,7 @@ class HubSpot:
       r = request.delete(url=url, params=self.params)
       return r
     else:
-      raise Exception("id must be interger")
+      raise Exception("O ID deve ser um número inteiro.")
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -74,7 +102,7 @@ def index():
 
 
 @app.route("/send_form", methods=["POST"])
-def send_morse():
+def send_form():
   usuario = request.form['usuario']
   if usuario != '':
     try:
