@@ -1,0 +1,141 @@
+@media (max-width: 2400px) {
+  html {
+    font-size: 18px;
+  }
+  .content {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  }
+  .formulario {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .resultado {
+    width: 40vw;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1vw;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+  .content {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  }
+  .formulario {
+    flex-direction: column;
+    align-items: center;
+  }
+  .resultado {
+    width: 80vw;
+  }
+  .buttons {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: .5vh;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 12px;
+  }
+  .content {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  }
+  .formulario {
+    flex-direction: column;
+    align-items: center;
+  }
+  .resultado {
+    width: 80vw;
+  }
+  .buttons {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: .5vh;
+  }
+}
+
+body {
+  font-family: sans-serif;
+  color: #222;
+}
+
+button {
+  background-color: #ddd;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: .5rem 1rem;
+  transition: .2s ease;
+}
+button:hover {
+  background-color: #bbb;
+  transition: .1s ease;
+}
+
+.content {
+  display: flex;
+}
+
+.header {
+  background-color: #aeb;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: .1rem 2rem;
+}
+
+.title {
+  text-align: center;
+  margin: .5rem .5rem;
+}
+
+.instructions-and-form {
+  margin: 5vh 5vw 5vh 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45vw;
+}
+
+.formulario, .buttons {
+  display: flex;
+}
+
+.buttons button {
+  width: 7vw;
+  min-width: 100px;
+  margin: .5vh 0;
+}
+
+.formulario input,
+.formulario textarea {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 0.2em;
+  padding: .5rem 1rem;
+  font-family: monospace;
+  transition: .4s ease;
+}
+.formulario input:focus, 
+.formulario textarea:focus, 
+.formulario select:focus {
+  border-color: #aaa;
+  border-width: 1px;
+  outline-offset: -4px !important;
+  outline-style: solid;
+  outline-width: 3px;
+  outline-color: #8f9;
+  transition: .2s ease;
+}

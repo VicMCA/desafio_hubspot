@@ -11,25 +11,23 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-
 class Contatos(db.model):
   id = db.Column(db.Integer)
-  first_name = db.Column(db.String(200), nullable=False)
-  last_name = db.Column(db.String(200), nullable=False)
+  nome = db.Column(db.String(200), nullable=False)
+  sobrenome = db.Column(db.String(200), nullable=False)
   email = db.Column(db.String(200), primary_key=True, nullable=False, unique=True)
-  phone = db.Column(db.String(20), nullable=False)
-  birthday_date = db.Column(db.Date, default=datetime.utcnow)
-  weight = db.Column(db.Float, nullable=False)
+  fone = db.Column(db.String(20), nullable=False)
+  data_nasc = db.Column(db.Date, default=datetime.utcnow)
+  peso = db.Column(db.Float, nullable=False)
 
   def __repr__(self):
     return f'<Task {self.email}>'
 
-
 class HubSpot:
-  key = os.getenv('HUBSPOT_KEY')
-  endpoint = os.getenv('HUBSPOT_ENDPOINT')
+  key = os.getenv('API_KEY')
+  endpoint = os.getenv('CONTACT_ENDPOINT')
   headers = {'Content-Type': 'application/json'}
-  params = {"hapikey": os.getenv('HUBSPOT_KEY')}
+  params = {"hapikey": os.getenv('API_KEY')}
 
 
   def get_contact_by_email(self, email):
