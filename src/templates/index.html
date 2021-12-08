@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Morse para ASCII</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <!-- Arquivo do CSS desabilitado por hora. O teste do CSS fica 
+    mais rápido com as definições aqui no próprio HTML.
+
+    Após finalizado será enviado de volta para o arquivo main.css -->
+  </head>
+  <body>
+ 
+    <div class="header">
+      <h1 class="title">Cadastro no HubSpot</h1>
+    </div>
+    
+    <div class="content">
+      
+      <div class="instructions-and-form">
+        <h2>Preencha o formulário abaixo</h2>
+        <p>Todos os campos são obrigatórios</p>
+          
+        <form class="formulario" action="/send_form" method="POST">
+          <input type="text" id="first_name" name="first_name" required placeholder="Primeiro Nome">
+          <input type="text" id="last_name" name="last_name" required placeholder="Sobrenome">
+          <input type="email" id="email" name="email" required placeholder="seu.email@aqui.com">
+          <input type="tel" id="phone" name="phone" required placeholder="(00) 0 0000-0000">
+          <input type="date" id="birthday" name="birthday" required>
+          <input type="number" id="weight" name="weight" required>
+          <div class="buttons">
+            <button class="form_buttons" type="submit">Enviar</button>
+            <button class="form_buttons" type="reset">Limpar</button>
+          </div>
+        </form>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  </body>
+</html>

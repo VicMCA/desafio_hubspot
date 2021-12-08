@@ -1,0 +1,159 @@
+# Desafio: Tradutor de Código Morse
+
+## Índice
+
+1. [Descrição](https://github.com/VicMCA/python_morse_translator#1-descri%C3%A7%C3%A3o)
+2. [Configuração](https://github.com/VicMCA/python_morse_translator#2-configura%C3%A7%C3%A3o)
+3. [Requisitos](https://github.com/VicMCA/python_morse_translator#3-requisitos)
+4. [Progresso Atual](https://github.com/VicMCA/python_morse_translator#4-progresso-atual)
+5. [Briefing do Projeto](https://github.com/VicMCA/python_morse_translator#5-briefing-do-projeto)
+6. [Tabela de Referência](https://github.com/VicMCA/python_morse_translator#6-tabela-de-refer%C3%AAncia-para-c%C3%B3digo-morse)
+
+## 1. Descrição 
+
+Este é um tradutor de código morse para alfabeto. Reconhece todas as 26 letras do alfabeto mais os algarismos de '0' à '9'. Os inputs reconhecidos são:  
+
+<pre>
+`.`  para 'dots'  
+`-`  para 'dashes'  
+`/`  para delimitação de caracteres  
+`//` para espaço entre palavras  
+</pre>
+
+Acentuações, pontuações e caracteres especiais não são reconhecidos. Todos os caracteres serão retornados como maiúscula quando aplicável.  
+Passo a passo de instalação e configuração:
+## 2. Configuração  
+
+Pacotes utilizados:  
+
+1. Python 3.8
+2. Python 3.8 Virtual Environment (venv)
+3. Pip
+4. Flask
+5. Flask-SQLAlchemy
+
+Passo a passo de instalação e configuração:
+
+1. Clone este repositório `git clone https://github.com/VicMCA/python_morse_translator.git`  
+2. Dentro da pasta raíz, recrie o ambiente virtual `python3 -m venv venv`  
+3. Ative o ambiente virtual `. venv/bin/activate` (Linux e MacOS) `venv\Scripts\activate` (Windows)  
+4. Instale o Flask no ambiente virtual `pip3 install flask`  
+5. Rode a aplicação com `python3 app.py`  
+6. O frontend ficará acessível em `http://localhost:5000`  
+
+## 3. Requisitos
+### Backend
+
+Como uma pessoa Back-end, seu objetivo é estruturar a comunicação do seu sistemas com as diversas fontes de dados existentes, mantendo um layout padrão e construindo as regras de tratamento necessárias. Nessa frente, você ira explorar todo o potencial que possui para a criação de APIs (seja via FastAPI, Django Rest, NodeJs ou outra tecnologia que desejar) para conectar a interface construída no front-end com a API o Hubspot. Seus objetivos são:  
+
+#### Atividades  
+  
+- Estruturar uma API REST para se comunicar com o Front-end criado e interagir com a API do Hubspot.  
+- Criar uma conta no Hubspot e construir um app simples para estabelecer a comunicação com a tabela de Contatos da sua conta.  
+  
+Os contatos possuem as seguintes propriedades:  
+- Email do Contato (string)  
+- Telefone do Contato (string)  
+- Data de Aniversário (timestamp)  
+- Peso em Kg (float).  
+- Realizar a conexão OAuth para envio e coleta de dados pela API do Hubspot.  
+
+    - ⚠ IMPORTANTE! Deve indicar onde é possível realizar a troca da key para o 
+OAuth, para que a conexão seja feita em qualquer conta do Hubspot. Pode 
+colocar um campo no frontend para inserir a key ou indicar no backend onde 
+ela deve ser inserida. Fica a sua escolha, mas esse meio deve existe e ser 
+explicado no READ.ME.
+  
+-  Utilizar os endpoints da API do Hubspot para obter dados dos Contatos no Hubspot.
+- Todos os dados do contato devem ser capturados quando a requisição for feita.
+- Utilizar os endpoints da API do Hubspot para criar e atualizar Contatos com os dados submetidos no formulário do front-end ou do arquivo com dados de vários contatos.  
+- A chave primária de cada contato será o email, fundamental para verificar se é um novo contato ou um contato existente.  
+- Caso um email submetido no formulário não esteja registrado no Hubspot, você irá criar um novo contato submetendo o email e todas as outras propriedades básicas de um contato  
+- Caso o email submetido no formulário esteja registrado em algum contato do Hubspot, é necessário primeiro requisitar as informações atuais do contato e enviar a atualização apenas dos campos com modificações.  
+  
+#### Dicas e Links
+
+- Importante lembrar que a propriedade E-mail do Contato é a chave primária de cada Contato, apesar do Hubspot possuir um ID único interno.  
+- Também é importante frisar que a tratativa dos erros estará em suas mãos. Iremos testar varios casos de criação e atualização de contatos, então é valioso minimizar os casos de erro.  
+- Será necessário criar uma conta do Hubspot CRM para o teste. Por ser uma plataforma, não existe nenhum empecilho para cria-la. Basta acessar o link https://app.hubspot.com/signup-hubspot/crm?loginRedirectUrl=undefined e seguir o passo a passo.  
+- Para criar um app, você precisará criar uma conta de desenvolvedor do Hubspot. 
+Pode seguir o passo a passo nesse link https://developers.hubspot.com/docs/api/creating-an-app.  
+- A principal feature que será utilizada é a de Contatos do CRM. Uma explicação mais detalhada da API e dos endpoints necessários se encontram aqui. https://developers.hubspot.com/docs/api/crm/contacts  
+
+### Frontend  
+
+Como uma pessoa Front-end, seu objetivo é construir uma interface intuitiva e fluida,para causar um impacto positivo na experiência do cliente quando for utilizar a plataforma. Nessa frente, você terá a liberdade de desenvolver da forma que achar mais adequada para suprir a demanda do cliente, bem como utilizar a tecnologia que se sentir mais confortável em desenvolver (HTML/CSS, Vue.js, Angular.js, React.js ou outro framework). Os objetivos são os seguintes:  
+
+#### Atividades  
+  
+- Construir uma página com o formulário de submissão para criar ou atualizar dados de Contatos, utilizando o Email do Contato como chave primária (um contato por vez).  
+- O formulário deve conter obrigatoriamente os campos  
+    - Email do Contato (string)  
+    - Telefone do Contato (string)  
+    - Data de Aniversário (timestamp)  
+    - Peso em Kg (float).  
+  
+#### Dicas e Links  
+  
+-  A UI da página e das features ficam de acordo com você, podendo utilizar estilização, animações e técnicas que achar conveniente.  
+-  Aqui vão algumas dicas de websites para ter inspirações quando tiver realizando a interface do formulário.  
+    -  https://dribbble.com/search/forms  
+    -  https://uigarage.net/search?_sf_s=forms  
+    -  https://www.awwwards.com/inspiration/search?text=forms  
+-  Não é obrigatório fazer a responsividade da página, apenas opcional.  
+-  Como já será realizada a tratativa de erro no back-end, fica como uma sugestão trazer alguns possíveis erros de forma visual para auxílio do usuário.  
+
+## 4. Progresso Atual 
+
+Lista de requisitos:  
+
+- [x] HTML contendo todas as informações para o usuário
+- [x] Formulário de input com campos de envio e reset
+- [x] Campo para exibição do resultado com opção de limpeza do mesmo
+- [x] Tratamento de erros para inputs inválidos no backend
+- [x] Tratamento de erros para inputs inválidos no frontend
+- [x] Tornar o programa acessível através de uma API
+- [x] Conectar a API à um frontend básico
+- [x] Modularizar o código (scripts de tradução separados das rotas do servidor)
+- [x] Criação de endpoints reservados para o envio dos códigos a traduzir
+- [x] CSS
+- [x] Tabela de letras, números e códigos correspondentes
+- [x] Testes de carga  
+
+Para próxima versão:  
+
+- [ ] Permitir a tradução inversa, de texto para morse. O script já se encontra pronto no arquivo "traduz_texto_morse.py" mas ainda não foi implementado no frontend
+- [ ] Página de "sobre" do projeto
+- [ ] Link para repositório no GitHub
+
+## 5. Briefing do Projeto 
+### Definição do desafio:
+Olá, tudo certo? Esse é o desafio para a vaga de Engenharia de Software Full Stack da 
+Neurotech!! O desafio tem como objetivo avaliar a sua capacidade de desenvolver uma 
+solução web full stack realizando a integração com o Hubspot, um CRM muito utilizado 
+no mercado para Marketing e Vendas. Cada seção do desafio é pensada para simular 
+a experiência da atuação de uma pessoa engenheira de software full stack, nas 
+vertentes de Back-End e Front-End.  
+  
+Ao longo do desafio, tente implementar a maior quantidade de itens que conseguir. 
+Entretanto, mesmo que não consiga concluir todo o desafio na íntegra, recomendamos 
+que envie os resultados parciais que conseguiu atingir dentro do prazo do desafio. 
+Iremos avaliar também a sua capacidade de adquirir novos conhecimentos e coloca-los 
+em prática diante de um desafio, desta forma, recomendamos que envie o máximo que 
+conseguir dentro do prazo.  
+
+### Regras do Desafio
+
+1.  O teste foi enviado para você no horário que você escolheu e a partir do momento 
+que você recebeu, você terá 24 horas para concluí-lo.  
+2.  O envio do desafio deve ser realizado com cópia para o email 
+digital@neurotech.com.br  
+3.  Deve ser enviado todos os códigos desenvolvidos e um arquivo READ.ME 
+explicando a sua solução.  
+4.  Procure realizar os desafios até onde conseguir. Pode ser que encontre entraves 
+em alguns deles ou não dê tempo de realizar todos, mas o que desejamos é que 
+você explore suas habilidades e desenvolva outras.  
+<br/><br/>
+
+## 6. Tabela de Referência  
+### Morse Code heat sheet:
